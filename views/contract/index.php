@@ -6,6 +6,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ContractSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $columnsVisibility array */
 
 $this->title = 'Договоры';
 $this->params['breadcrumbs'][] = $this->title;
@@ -42,156 +43,269 @@ $this->params['breadcrumbs'][] = $this->title;
             'milestone1:ntext',
             [
                 'attribute' => 'date1',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
             ],
-            'milestone2:ntext',
+            [
+                'attribute' => 'milestone2',
+                'visible' => $columnsVisibility['milestone2']
+            ],
             [
                 'attribute' => 'date2',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date2']
             ],
-            'milestone3:ntext',
+            [
+                'attribute' => 'milestone3',
+                'visible' => $columnsVisibility['milestone3']
+            ],
             [
                 'attribute' => 'date3',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date3']
             ],
-            'milestone4:ntext',
+            [
+                'attribute' => 'milestone4',
+                'visible' => $columnsVisibility['milestone4']
+            ],
             [
                 'attribute' => 'date4',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date4']
             ],
-            'milestone5:ntext',
+            [
+                'attribute' => 'milestone5',
+                'visible' => $columnsVisibility['milestone5']
+            ],
             [
                 'attribute' => 'date5',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date5']
             ],
-            'milestone6:ntext',
+            [
+                'attribute' => 'milestone6',
+                'visible' => $columnsVisibility['milestone6']
+            ],
             [
                 'attribute' => 'date6',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date6']
             ],
-            'milestone7:ntext',
+            [
+                'attribute' => 'milestone7',
+                'visible' => $columnsVisibility['milestone7']
+            ],
             [
                 'attribute' => 'date7',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date7']
             ],
-            'milestone8:ntext',
+            [
+                'attribute' => 'milestone8',
+                'visible' => $columnsVisibility['milestone8']
+            ],
             [
                 'attribute' => 'date8',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date8']
             ],
-            'milestone9:ntext',
+            [
+                'attribute' => 'milestone9',
+                'visible' => $columnsVisibility['milestone9']
+            ],
             [
                 'attribute' => 'date9',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date9']
             ],
-            'milestone10:ntext',
+            [
+                'attribute' => 'milestone10',
+                'visible' => $columnsVisibility['milestone10']
+            ],
             [
                 'attribute' => 'date10',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date10']
             ],
-            'milestone11:ntext',
+            [
+                'attribute' => 'milestone11',
+                'visible' => $columnsVisibility['milestone11']
+            ],
             [
                 'attribute' => 'date11',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date11']
             ],
-            'milestone12:ntext',
+            [
+                'attribute' => 'milestone12',
+                'visible' => $columnsVisibility['milestone12']
+            ],
             [
                 'attribute' => 'date12',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date12']
             ],
-            'milestone13:ntext',
+            [
+                'attribute' => 'milestone13',
+                'visible' => $columnsVisibility['milestone13']
+            ],
             [
                 'attribute' => 'date13',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date13']
             ],
-            'milestone14:ntext',
+            [
+                'attribute' => 'milestone14',
+                'visible' => $columnsVisibility['milestone14']
+            ],
             [
                 'attribute' => 'date14',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date14']
             ],
-            'milestone15:ntext',
+            [
+                'attribute' => 'milestone15',
+                'visible' => $columnsVisibility['milestone15']
+            ],
             [
                 'attribute' => 'date15',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date15']
             ],
-            'milestone16:ntext',
+            [
+                'attribute' => 'milestone16',
+                'visible' => $columnsVisibility['milestone16']
+            ],
             [
                 'attribute' => 'date16',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date16']
             ],
-            'milestone17:ntext',
+            [
+                'attribute' => 'milestone17',
+                'visible' => $columnsVisibility['milestone17']
+            ],
             [
                 'attribute' => 'date17',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date17']
             ],
-            'milestone18:ntext',
+            [
+                'attribute' => 'milestone18',
+                'visible' => $columnsVisibility['milestone18']
+            ],
             [
                 'attribute' => 'date18',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date18']
             ],
-            'milestone19:ntext',
+            [
+                'attribute' => 'milestone19',
+                'visible' => $columnsVisibility['milestone19']
+            ],
             [
                 'attribute' => 'date19',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date19']
             ],
-            'milestone20:ntext',
+            [
+                'attribute' => 'milestone20',
+                'visible' => $columnsVisibility['milestone20']
+            ],
             [
                 'attribute' => 'date20',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date20']
             ],
-            'milestone21:ntext',
+            [
+                'attribute' => 'milestone21',
+                'visible' => $columnsVisibility['milestone21']
+            ],
             [
                 'attribute' => 'date21',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date21']
             ],
-            'milestone22:ntext',
+            [
+                'attribute' => 'milestone22',
+                'visible' => $columnsVisibility['milestone22']
+            ],
             [
                 'attribute' => 'date22',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date22']
             ],
-            'milestone23:ntext',
+            [
+                'attribute' => 'milestone23',
+                'visible' => $columnsVisibility['milestone23']
+            ],
             [
                 'attribute' => 'date23',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date23']
             ],
-            'milestone24:ntext',
+            [
+                'attribute' => 'milestone24',
+                'visible' => $columnsVisibility['milestone24']
+            ],
             [
                 'attribute' => 'date24',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date24']
             ],
-            'milestone25:ntext',
+            [
+                'attribute' => 'milestone25',
+                'visible' => $columnsVisibility['milestone25']
+            ],
             [
                 'attribute' => 'date25',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date25']
             ],
-            'milestone26:ntext',
+            [
+                'attribute' => 'milestone26',
+                'visible' => $columnsVisibility['milestone26']
+            ],
             [
                 'attribute' => 'date26',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date26']
             ],
-            'milestone27:ntext',
+            [
+                'attribute' => 'milestone27',
+                'visible' => $columnsVisibility['milestone27']
+            ],
             [
                 'attribute' => 'date27',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date27']
             ],
-            'milestone28:ntext',
+            [
+                'attribute' => 'milestone28',
+                'visible' => $columnsVisibility['milestone28']
+            ],
             [
                 'attribute' => 'date28',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date28']
             ],
-            'milestone29:ntext',
+            [
+                'attribute' => 'milestone29',
+                'visible' => $columnsVisibility['milestone29']
+            ],
             [
                 'attribute' => 'date29',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date29']
             ],
-            'milestone30:ntext',
+            [
+                'attribute' => 'milestone30',
+                'visible' => $columnsVisibility['milestone30']
+            ],
             [
                 'attribute' => 'date30',
-                'contentOptions' => ['style' => 'white-space: nowrap;']
-            ],
-            // 'created_at',
-            // 'updated_at',
-            'creator'
+                'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'visible' => $columnsVisibility['date30']
+            ]
         ],
     ]); ?>
 

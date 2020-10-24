@@ -53,9 +53,34 @@ class ContractController extends Controller
         $searchModel = new ContractSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $contracts = $dataProvider->getModels();
+
+        $columnsVisibility = [];
+        for ($i = 2; $i <= 30; $i++) {
+            $columnsVisibility['milestone' . $i] = false;
+            $columnsVisibility['date' . $i] = false;
+        }
+
+        foreach ($contracts as $contract) {
+
+            for ($i = 2; $i <= 30; $i++) {
+                $date = 'date' . $i;
+                $milestone = 'milestone' . $i;
+
+                if ($contract->$date) {
+                $columnsVisibility[$date] = true;
+                }
+
+                if ($contract->$milestone) {
+                    $columnsVisibility[$milestone] = true;
+                }
+            }
+        }
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'columnsVisibility' => $columnsVisibility
         ]);
     }
 

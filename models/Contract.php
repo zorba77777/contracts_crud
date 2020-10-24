@@ -115,7 +115,7 @@ class Contract extends \yii\db\ActiveRecord
             'subject' => 'Адрес аренды / предмет хоз. договора',
             'branch' => 'Филиал / СП',
             'lawyer' => 'Исполнитель',
-            'status' => 'Статус задачи (в работе / завершено)',
+            'status' => 'Статус задачи',
             'start_date' => 'Дата поступления',
             'milestone1' => 'Веха1',
             'date1' => 'Дата1',
