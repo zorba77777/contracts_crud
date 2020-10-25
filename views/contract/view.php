@@ -38,67 +38,241 @@ $this->params['breadcrumbs'][] = $this->title;
             'start_date',
             'milestone1:ntext',
             'date1',
-            'milestone2:ntext',
-            'date2',
-            'milestone3:ntext',
-            'date3',
-            'milestone4:ntext',
-            'date4',
-            'milestone5:ntext',
-            'date5',
-            'milestone6:ntext',
-            'date6',
-            'milestone7:ntext',
-            'date7',
-            'milestone8:ntext',
-            'date8',
-            'milestone9:ntext',
-            'date9',
-            'milestone10:ntext',
-            'date10',
-            'milestone11:ntext',
-            'date11',
-            'milestone12:ntext',
-            'date12',
-            'milestone13:ntext',
-            'date13',
-            'milestone14:ntext',
-            'date14',
-            'milestone15:ntext',
-            'date15',
-            'milestone16:ntext',
-            'date16',
-            'milestone17:ntext',
-            'date17',
-            'milestone18:ntext',
-            'date18',
-            'milestone19:ntext',
-            'date19',
-            'milestone20:ntext',
-            'date20',
-            'milestone21:ntext',
-            'date21',
-            'milestone22:ntext',
-            'date22',
-            'milestone23:ntext',
-            'date23',
-            'milestone24:ntext',
-            'date24',
-            'milestone25:ntext',
-            'date25',
-            'milestone26:ntext',
-            'date26',
-            'milestone27:ntext',
-            'date27',
-            'milestone28:ntext',
-            'date28',
-            'milestone29:ntext',
-            'date29',
-            'milestone30:ntext',
-            'date30',
+            [
+                'attribute' => 'milestone2',
+                'visible' => $model->milestone2 ? true : false
+            ],
+            [
+                'attribute' => 'date2',
+                'visible' => $model->date2 ? true : false
+            ],
+            [
+                'attribute' => 'milestone3',
+                'visible' => $model->milestone3 ? true : false
+            ],
+            [
+                'attribute' => 'date3',
+                'visible' => $model->date3 ? true : false
+            ],
+            [
+                'attribute' => 'milestone4',
+                'visible' => $model->milestone4 ? true : false
+            ],
+            [
+                'attribute' => 'date4',
+                'visible' => $model->date4 ? true : false
+            ],
+            [
+                'attribute' => 'milestone5',
+                'visible' => $model->milestone5 ? true : false
+            ],
+            [
+                'attribute' => 'date5',
+                'visible' => $model->date5 ? true : false
+            ],
+            [
+                'attribute' => 'milestone6',
+                'visible' => $model->milestone6 ? true : false
+            ],
+            [
+                'attribute' => 'date6',
+                'visible' => $model->date6 ? true : false
+            ],
+            [
+                'attribute' => 'milestone7',
+                'visible' => $model->milestone7 ? true : false
+            ],
+            [
+                'attribute' => 'date7',
+                'visible' => $model->date7 ? true : false
+            ],
+            [
+                'attribute' => 'milestone8',
+                'visible' => $model->milestone8 ? true : false
+            ],
+            [
+                'attribute' => 'date8',
+                'visible' => $model->date8 ? true : false
+            ],
+            [
+                'attribute' => 'milestone9',
+                'visible' => $model->milestone9 ? true : false
+            ],
+            [
+                'attribute' => 'date9',
+                'visible' => $model->date9 ? true : false
+            ],
+            [
+                'attribute' => 'milestone10',
+                'visible' => $model->milestone10 ? true : false
+            ],
+            [
+                'attribute' => 'date10',
+                'visible' => $model->date10 ? true : false
+            ],
+            [
+                'attribute' => 'milestone11',
+                'visible' => $model->milestone11 ? true : false
+            ],
+            [
+                'attribute' => 'date11',
+                'visible' => $model->date11 ? true : false
+            ],
+            [
+                'attribute' => 'milestone12',
+                'visible' => $model->milestone12 ? true : false
+            ],
+            [
+                'attribute' => 'date12',
+                'visible' => $model->date12 ? true : false
+            ],
+            [
+                'attribute' => 'milestone13',
+                'visible' => $model->milestone13 ? true : false
+            ],
+            [
+                'attribute' => 'date13',
+                'visible' => $model->date13 ? true : false
+            ],
+            [
+                'attribute' => 'milestone14',
+                'visible' => $model->milestone14 ? true : false
+            ],
+            [
+                'attribute' => 'date14',
+                'visible' => $model->date14 ? true : false
+            ],
+            [
+                'attribute' => 'milestone15',
+                'visible' => $model->milestone15 ? true : false
+            ],
+            [
+                'attribute' => 'date15',
+                'visible' => $model->date15 ? true : false
+            ],
+            [
+                'attribute' => 'milestone16',
+                'visible' => $model->milestone16 ? true : false
+            ],
+            [
+                'attribute' => 'date16',
+                'visible' => $model->date16 ? true : false
+            ],
+            [
+                'attribute' => 'milestone17',
+                'visible' => $model->milestone17 ? true : false
+            ],
+            [
+                'attribute' => 'date17',
+                'visible' => $model->date17 ? true : false
+            ],
+            [
+                'attribute' => 'milestone18',
+                'visible' => $model->milestone18 ? true : false
+            ],
+            [
+                'attribute' => 'date18',
+                'visible' => $model->date18 ? true : false
+            ],
+            [
+                'attribute' => 'milestone19',
+                'visible' => $model->milestone19 ? true : false
+            ],
+            [
+                'attribute' => 'date19',
+                'visible' => $model->date19 ? true : false
+            ],
+            [
+                'attribute' => 'milestone20',
+                'visible' => $model->milestone20 ? true : false
+            ],
+            [
+                'attribute' => 'date20',
+                'visible' => $model->date20 ? true : false
+            ],
+            [
+                'attribute' => 'milestone21',
+                'visible' => $model->milestone21 ? true : false
+            ],
+            [
+                'attribute' => 'date21',
+                'visible' => $model->date21 ? true : false
+            ],
+            [
+                'attribute' => 'milestone22',
+                'visible' => $model->milestone22 ? true : false
+            ],
+            [
+                'attribute' => 'date22',
+                'visible' => $model->date22 ? true : false
+            ],
+            [
+                'attribute' => 'milestone23',
+                'visible' => $model->milestone23 ? true : false
+            ],
+            [
+                'attribute' => 'date23',
+                'visible' => $model->date23 ? true : false
+            ],
+            [
+                'attribute' => 'milestone24',
+                'visible' => $model->milestone24 ? true : false
+            ],
+            [
+                'attribute' => 'date24',
+                'visible' => $model->date24 ? true : false
+            ],
+            [
+                'attribute' => 'milestone25',
+                'visible' => $model->milestone25 ? true : false
+            ],
+            [
+                'attribute' => 'date25',
+                'visible' => $model->date25 ? true : false
+            ],
+            [
+                'attribute' => 'milestone26',
+                'visible' => $model->milestone26 ? true : false
+            ],
+            [
+                'attribute' => 'date26',
+                'visible' => $model->date26 ? true : false
+            ],
+            [
+                'attribute' => 'milestone27',
+                'visible' => $model->milestone27 ? true : false
+            ],
+            [
+                'attribute' => 'date27',
+                'visible' => $model->date27 ? true : false
+            ],
+            [
+                'attribute' => 'milestone28',
+                'visible' => $model->milestone28 ? true : false
+            ],
+            [
+                'attribute' => 'date28',
+                'visible' => $model->date28 ? true : false
+            ],
+            [
+                'attribute' => 'milestone29',
+                'visible' => $model->milestone29 ? true : false
+            ],
+            [
+                'attribute' => 'date29',
+                'visible' => $model->date29 ? true : false
+            ],
+            [
+                'attribute' => 'milestone30',
+                'visible' => $model->milestone30 ? true : false
+            ],
+            [
+                'attribute' => 'date30',
+                'visible' => $model->date30 ? true : false
+            ],
             'created_at',
             'updated_at',
-            'creator',
+            'creator'
         ],
     ]) ?>
 

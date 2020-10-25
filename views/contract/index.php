@@ -305,7 +305,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'date30',
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
                 'visible' => $columnsVisibility['date30']
-            ]
+            ],
+            'creator'
         ],
     ]); ?>
 

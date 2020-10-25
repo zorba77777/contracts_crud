@@ -7,6 +7,11 @@ use yii\helpers\Html;
 /* @var $branches array */
 /* @var $users array */
 
+$this->registerJsFile(
+    '@web/js/contract_edit.js',
+    ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+
 $this->title = 'Создать запись';
 $this->params['breadcrumbs'][] = ['label' => 'Договоры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -15,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
+    <?= $this->render('_form_create', [
         'model' => $model,
         'users' => $users,
         'branches' => $branches
