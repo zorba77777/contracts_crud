@@ -59,7 +59,7 @@ use yii\widgets\ActiveForm;
     <?= Html::Button('Добавить веху', ['class' => 'btn btn-primary', 'id' => 'add']) ?>
 
     <?php $model->creator = Yii::$app->user->identity->getId() ?>
-    <?= $form->field($model, 'creator')->dropDownList($users, ['disabled' => true]); ?>
+    <?= $form->field($model, 'creator')->dropDownList($users); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
