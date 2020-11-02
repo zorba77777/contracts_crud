@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\helpers\ExcelExportImportHelper;
 use Yii;
 use app\models\User;
 use app\models\UserSearch;

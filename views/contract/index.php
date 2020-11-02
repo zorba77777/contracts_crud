@@ -3,10 +3,14 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ContractSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $columnsVisibility array */
+/* @var $branches array */
+/* @var $users array */
+/* @var $statuses array */
 
 $this->title = 'Договоры';
 $this->params['breadcrumbs'][] = $this->title;
@@ -26,19 +30,37 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'formatter' => ['class' => 'yii\i18n\Formatter','nullDisplay' => ''],
+        'formatter' => ['class' => 'yii\i18n\Formatter', 'nullDisplay' => ''],
         'pager' => [
             'firstPageLabel' => 'Первая',
-            'lastPageLabel'  => 'Последняя'
+            'lastPageLabel' => 'Последняя'
         ],
         'columns' => [
             ['class' => 'yii\grid\ActionColumn'],
             'id',
             'counterparty',
             'subject',
-            'branch',
-            'lawyer',
-            'status',
+            [
+                'attribute' => 'branch',
+                'filter' => $branches,
+                'value' => function ($model) {
+                    return $model->branch0->branch;
+                }
+            ],
+            [
+                'attribute' => 'lawyer',
+                'filter' => $users,
+                'value' => function ($model) {
+                    return $model->lawyer0->username;
+                }
+            ],
+            [
+                'attribute' => 'status',
+                'filter' => $statuses,
+                'value' => function ($model) {
+                    return $model->status0->status;
+                }
+            ],
             'start_date',
             'milestone1:ntext',
             [
@@ -306,7 +328,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
                 'visible' => $columnsVisibility['date30']
             ],
-            'creator'
+            [
+                'attribute' => 'creator',
+                'value' => function ($model) {
+                    if ($model->creator0) {
+                        return $model->creator0->username;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
         ],
     ]); ?>
 

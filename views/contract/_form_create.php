@@ -9,6 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $branches array */
 /* @var $users array */
+/* @var $statuses array */
 ?>
 
 <div class="contract-form">
@@ -21,9 +22,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'branch')->dropDownList($branches, ['prompt' => '- Выберите филиал / СП -']); ?>
 
-    <?= $form->field($model, 'lawyer')->dropDownList($users, ['prompt' => '- Выберите исполнителя -']); ?>
+    <?php $model->lawyer = Yii::$app->user->identity->getId() ?>
+    <?= $form->field($model, 'lawyer')->dropDownList($users); ?>
 
-    <?= $form->field($model, 'status')->dropDownList(['в работе' => 'в работе', 'завершено' => 'завершено', 'снято' => 'снято'], ['prompt' => '- Выберите статус -']); ?>
+    <?php $model->status = 2 ?>
+    <?= $form->field($model, 'status')->dropDownList($statuses); ?>
 
     <?= $form->field($model, 'start_date')->widget(DatePicker::classname(), [
         'language' => 'ru',
@@ -55,7 +58,8 @@ use yii\widgets\ActiveForm;
 
     <?= Html::Button('Добавить веху', ['class' => 'btn btn-primary', 'id' => 'add']) ?>
 
-    <?= $form->field($model, 'creator')->textInput(['readonly' => true, 'value' => Yii::$app->user->identity->getId()]) ?>
+    <?php $model->creator = Yii::$app->user->identity->getId() ?>
+    <?= $form->field($model, 'creator')->dropDownList($users, ['disabled' => true]); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

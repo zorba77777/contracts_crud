@@ -17,8 +17,8 @@ class ContractSearch extends Contract
     public function rules()
     {
         return [
-            [['id', 'creator'], 'integer'],
-            [['counterparty', 'subject', 'branch', 'lawyer', 'status', 'start_date', 'milestone1', 'date1', 'milestone2', 'date2', 'milestone3', 'date3', 'milestone4', 'date4', 'milestone5', 'date5', 'milestone6', 'date6', 'milestone7', 'date7', 'milestone8', 'date8', 'milestone9', 'date9', 'milestone10', 'date10', 'milestone11', 'date11', 'milestone12', 'date12', 'milestone13', 'date13', 'milestone14', 'date14', 'milestone15', 'date15', 'milestone16', 'date16', 'milestone17', 'date17', 'milestone18', 'date18', 'milestone19', 'date19', 'milestone20', 'date20', 'milestone21', 'date21', 'milestone22', 'date22', 'milestone23', 'date23', 'milestone24', 'date24', 'milestone25', 'date25', 'milestone26', 'date26', 'milestone27', 'date27', 'milestone28', 'date28', 'milestone29', 'date29', 'milestone30', 'date30', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'branch', 'lawyer', 'status', 'creator'], 'integer'],
+            [['counterparty', 'subject', 'start_date', 'milestone1', 'date1', 'milestone2', 'date2', 'milestone3', 'date3', 'milestone4', 'date4', 'milestone5', 'date5', 'milestone6', 'date6', 'milestone7', 'date7', 'milestone8', 'date8', 'milestone9', 'date9', 'milestone10', 'date10', 'milestone11', 'date11', 'milestone12', 'date12', 'milestone13', 'date13', 'milestone14', 'date14', 'milestone15', 'date15', 'milestone16', 'date16', 'milestone17', 'date17', 'milestone18', 'date18', 'milestone19', 'date19', 'milestone20', 'date20', 'milestone21', 'date21', 'milestone22', 'date22', 'milestone23', 'date23', 'milestone24', 'date24', 'milestone25', 'date25', 'milestone26', 'date26', 'milestone27', 'date27', 'milestone28', 'date28', 'milestone29', 'date29', 'milestone30', 'date30', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -45,7 +45,7 @@ class ContractSearch extends Contract
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query
+            'query' => $query,
         ]);
 
         $this->load($params);
@@ -59,6 +59,9 @@ class ContractSearch extends Contract
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'branch' => $this->branch,
+            'lawyer' => $this->lawyer,
+            'status' => $this->status,
             'start_date' => $this->start_date,
             'date1' => $this->date1,
             'date2' => $this->date2,
@@ -97,9 +100,6 @@ class ContractSearch extends Contract
 
         $query->andFilterWhere(['like', 'counterparty', $this->counterparty])
             ->andFilterWhere(['like', 'subject', $this->subject])
-            ->andFilterWhere(['like', 'branch', $this->branch])
-            ->andFilterWhere(['like', 'lawyer', $this->lawyer])
-            ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'milestone1', $this->milestone1])
             ->andFilterWhere(['like', 'milestone2', $this->milestone2])
             ->andFilterWhere(['like', 'milestone3', $this->milestone3])

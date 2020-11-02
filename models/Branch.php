@@ -9,6 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property string|null $branch
+ *
+ * @property Contract[] $contracts
  */
 class Branch extends \yii\db\ActiveRecord
 {
@@ -39,6 +41,16 @@ class Branch extends \yii\db\ActiveRecord
             'id' => 'ID',
             'branch' => 'Branch',
         ];
+    }
+
+    /**
+     * Gets query for [[Contracts]].
+     *
+     * @return \yii\db\ActiveQuery|ContractQuery
+     */
+    public function getContracts()
+    {
+        return $this->hasMany(Contract::className(), ['branch' => 'id']);
     }
 
     /**

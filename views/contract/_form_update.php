@@ -9,6 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $branches array */
 /* @var $users array */
+/* @var $statuses array */
 ?>
 
 <div class="contract-form">
@@ -19,11 +20,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'subject')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'branch')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'branch')->dropDownList($branches); ?>
 
-    <?= $form->field($model, 'lawyer')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'lawyer')->dropDownList($users); ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'status')->dropDownList($statuses); ?>
 
     <?= $form->field($model, 'start_date')->widget(DatePicker::classname(), [
         'language' => 'ru',
@@ -76,7 +77,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'updated_at')->textInput(['readonly' => true, 'value' => date('Y-m-d')]) ?>
 
-    <?= $form->field($model, 'creator')->textInput(['readonly' => true, 'value' => Yii::$app->user->identity->getId()]) ?>
+    <?php $model->creator = Yii::$app->user->identity->getId() ?>
+    <?= $form->field($model, 'creator')->dropDownList($users, ['disabled' => true]); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

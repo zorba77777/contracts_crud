@@ -32,9 +32,24 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'counterparty',
             'subject',
-            'branch',
-            'lawyer',
-            'status',
+            [
+                'attribute' => 'branch',
+                'value' => function ($model) {
+                    return $model->branch0->branch;
+                }
+            ],
+            [
+                'attribute' => 'lawyer',
+                'value' => function ($model) {
+                    return $model->lawyer0->username;
+                }
+            ],
+            [
+                'attribute' => 'status',
+                'value' => function ($model) {
+                    return $model->status0->status;
+                }
+            ],
             'start_date',
             'milestone1:ntext',
             'date1',
@@ -272,7 +287,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'created_at',
             'updated_at',
-            'creator'
+            [
+                'attribute' => 'creator',
+                'value' => function ($model) {
+                    if ($model->creator0) {
+                        return $model->creator0->username;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
         ],
     ]) ?>
 

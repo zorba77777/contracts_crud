@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Contract */
 /* @var $branches array */
 /* @var $users array */
+/* @var $statuses array */
 
 $this->registerJsFile(
     '@web/js/contract_edit.js',
@@ -24,7 +25,8 @@ $this->params['breadcrumbs'][] = 'Обновить';
     <?= $this->render('_form_update', [
         'model' => $model,
         'users' => $users,
-        'branches' => $branches
+        'branches' => $branches,
+        'statuses' => $statuses
     ]) ?>
 
 </div>

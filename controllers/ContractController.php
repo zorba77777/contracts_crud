@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\helpers\ExcelExportImportHelper;
 use app\models\Branch;
+use app\models\Status;
 use app\models\User;
 use Yii;
 use app\models\Contract;
@@ -68,7 +69,7 @@ class ContractController extends Controller
                 $milestone = 'milestone' . $i;
 
                 if ($contract->$date) {
-                $columnsVisibility[$date] = true;
+                    $columnsVisibility[$date] = true;
                 }
 
                 if ($contract->$milestone) {
@@ -77,10 +78,15 @@ class ContractController extends Controller
             }
         }
 
+        $dropdownListArrays = $this->getDropdownListArrays();
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'columnsVisibility' => $columnsVisibility
+            'columnsVisibility' => $columnsVisibility,
+            'users' => $dropdownListArrays['users'],
+            'branches' => $dropdownListArrays['branches'],
+            'statuses' => $dropdownListArrays['statuses']
         ]);
     }
 
@@ -110,16 +116,13 @@ class ContractController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        $users = User::find()->all();
-        $users = ArrayHelper::map($users,'username','username');
-
-        $branches = Branch::find()->all();
-        $branches = ArrayHelper::map($branches,'branch','branch');
+        $dropdownListArrays = $this->getDropdownListArrays();
 
         return $this->render('create', [
             'model' => $model,
-            'users' => $users,
-            'branches' => $branches
+            'users' => $dropdownListArrays['users'],
+            'branches' => $dropdownListArrays['branches'],
+            'statuses' => $dropdownListArrays['statuses']
         ]);
     }
 
@@ -138,16 +141,13 @@ class ContractController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        $users = User::find()->all();
-        $users = ArrayHelper::map($users,'username','username');
-
-        $branches = Branch::find()->all();
-        $branches = ArrayHelper::map($branches,'branch','branch');
+        $dropdownListArrays = $this->getDropdownListArrays();
 
         return $this->render('update', [
             'model' => $model,
-            'users' => $users,
-            'branches' => $branches
+            'users' => $dropdownListArrays['users'],
+            'branches' => $dropdownListArrays['branches'],
+            'statuses' => $dropdownListArrays['statuses']
         ]);
     }
 
@@ -185,4 +185,21 @@ class ContractController extends Controller
     {
         ExcelExportImportHelper::ExportFromContracts();
     }
+
+    private function getDropdownListArrays()
+    {
+        $dropdownListArrays = ['users' => [], 'branches' => [], 'statuses' => []];
+
+        $dropdownListArrays['users'] = User::find()->all();
+        $dropdownListArrays['users'] = ArrayHelper::map($dropdownListArrays['users'],'id','username');
+
+        $dropdownListArrays['branches'] = Branch::find()->all();
+        $dropdownListArrays['branches'] = ArrayHelper::map($dropdownListArrays['branches'],'id','branch');
+
+        $dropdownListArrays['statuses'] = Status::find()->all();
+        $dropdownListArrays['statuses'] = ArrayHelper::map($dropdownListArrays['statuses'],'id','status');
+
+        return $dropdownListArrays;
+    }
+
 }

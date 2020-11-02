@@ -10,9 +10,9 @@ use Yii;
  * @property int $id
  * @property string|null $counterparty
  * @property string|null $subject
- * @property string|null $branch
- * @property string|null $lawyer
- * @property string|null $status
+ * @property int|null $branch
+ * @property int|null $lawyer
+ * @property int|null $status
  * @property string|null $start_date
  * @property string|null $milestone1
  * @property string|null $date1
@@ -79,6 +79,9 @@ use Yii;
  * @property int|null $creator
  *
  * @property User $creator0
+ * @property User $lawyer0
+ * @property Branch $branch0
+ * @property Status $status0
  */
 class Contract extends \yii\db\ActiveRecord
 {
@@ -96,11 +99,14 @@ class Contract extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['branch', 'lawyer', 'status', 'creator'], 'integer'],
             [['start_date', 'date1', 'date2', 'date3', 'date4', 'date5', 'date6', 'date7', 'date8', 'date9', 'date10', 'date11', 'date12', 'date13', 'date14', 'date15', 'date16', 'date17', 'date18', 'date19', 'date20', 'date21', 'date22', 'date23', 'date24', 'date25', 'date26', 'date27', 'date28', 'date29', 'date30', 'created_at', 'updated_at'], 'safe'],
             [['milestone1', 'milestone2', 'milestone3', 'milestone4', 'milestone5', 'milestone6', 'milestone7', 'milestone8', 'milestone9', 'milestone10', 'milestone11', 'milestone12', 'milestone13', 'milestone14', 'milestone15', 'milestone16', 'milestone17', 'milestone18', 'milestone19', 'milestone20', 'milestone21', 'milestone22', 'milestone23', 'milestone24', 'milestone25', 'milestone26', 'milestone27', 'milestone28', 'milestone29', 'milestone30'], 'string'],
-            [['creator'], 'integer'],
-            [['counterparty', 'subject', 'branch', 'lawyer', 'status'], 'string', 'max' => 255],
+            [['counterparty', 'subject'], 'string', 'max' => 255],
             [['creator'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['creator' => 'id']],
+            [['lawyer'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['lawyer' => 'id']],
+            [['branch'], 'exist', 'skipOnError' => true, 'targetClass' => Branch::className(), 'targetAttribute' => ['branch' => 'id']],
+            [['status'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['status' => 'id']],
             [['counterparty', 'subject', 'branch', 'lawyer', 'status', 'start_date'], 'required'],
             [['start_date', 'date1', 'date2', 'date3', 'date4', 'date5', 'date6', 'date7', 'date8', 'date9', 'date10', 'date11', 'date12', 'date13', 'date14', 'date15', 'date16', 'date17', 'date18', 'date19', 'date20', 'date21', 'date22', 'date23', 'date24', 'date25', 'date26', 'date27', 'date28', 'date29', 'date30', 'created_at', 'updated_at'], 'date', 'format' => 'yyyy-MM-dd'],
         ];
@@ -193,6 +199,36 @@ class Contract extends \yii\db\ActiveRecord
     public function getCreator0()
     {
         return $this->hasOne(User::className(), ['id' => 'creator']);
+    }
+
+    /**
+     * Gets query for [[Lawyer0]].
+     *
+     * @return \yii\db\ActiveQuery|UserQuery
+     */
+    public function getLawyer0()
+    {
+        return $this->hasOne(User::className(), ['id' => 'lawyer']);
+    }
+
+    /**
+     * Gets query for [[Branch0]].
+     *
+     * @return \yii\db\ActiveQuery|BranchQuery
+     */
+    public function getBranch0()
+    {
+        return $this->hasOne(Branch::className(), ['id' => 'branch']);
+    }
+
+    /**
+     * Gets query for [[Status0]].
+     *
+     * @return \yii\db\ActiveQuery|StatusQuery
+     */
+    public function getStatus0()
+    {
+        return $this->hasOne(Status::className(), ['id' => 'status']);
     }
 
     /**

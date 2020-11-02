@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Contract */
 /* @var $branches array */
 /* @var $users array */
+/* @var $statuses array */
 
 $this->registerJsFile(
     '@web/js/contract_edit.js',
@@ -23,7 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form_create', [
         'model' => $model,
         'users' => $users,
-        'branches' => $branches
+        'branches' => $branches,
+        'statuses' => $statuses
     ]) ?>
 
 </div>

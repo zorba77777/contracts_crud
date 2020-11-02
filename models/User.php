@@ -15,6 +15,7 @@ use yii\web\IdentityInterface;
  * @property string|null $access_token
  *
  * @property Contract[] $contracts
+ * @property Contract[] $contracts0
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -58,6 +59,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getContracts()
     {
         return $this->hasMany(Contract::className(), ['creator' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Contracts0]].
+     *
+     * @return \yii\db\ActiveQuery|ContractQuery
+     */
+    public function getContracts0()
+    {
+        return $this->hasMany(Contract::className(), ['lawyer' => 'id']);
     }
 
     /**
