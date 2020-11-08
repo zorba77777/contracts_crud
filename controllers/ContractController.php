@@ -113,7 +113,7 @@ class ContractController extends Controller
         $model = new Contract();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         $dropdownListArrays = $this->getDropdownListArrays();
@@ -138,7 +138,7 @@ class ContractController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         $dropdownListArrays = $this->getDropdownListArrays();

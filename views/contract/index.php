@@ -330,6 +330,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'creator',
+                'filter' => $users,
                 'value' => function ($model) {
                     if ($model->creator0) {
                         return $model->creator0->username;
