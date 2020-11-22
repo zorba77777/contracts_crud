@@ -5,21 +5,21 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "statuses".
+ * This is the model class for table "contract_statuses".
  *
  * @property int $id
- * @property string|null $status
+ * @property string|null $name
  *
  * @property Contract[] $contracts
  */
-class Status extends \yii\db\ActiveRecord
+class ContractStatus extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'statuses';
+        return 'contract_statuses';
     }
 
     /**
@@ -28,7 +28,7 @@ class Status extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,7 +39,7 @@ class Status extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'status' => 'Status',
+            'name' => 'Name',
         ];
     }
 
@@ -55,10 +55,10 @@ class Status extends \yii\db\ActiveRecord
 
     /**
      * {@inheritdoc}
-     * @return StatusQuery the active query used by this AR class.
+     * @return ContractStatusQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new StatusQuery(get_called_class());
+        return new ContractStatusQuery(get_called_class());
     }
 }

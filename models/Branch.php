@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "branches".
  *
  * @property int $id
- * @property string|null $branch
+ * @property string|null $name
  *
  * @property Contract[] $contracts
  */
@@ -28,7 +28,7 @@ class Branch extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['branch'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,7 +39,7 @@ class Branch extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'branch' => 'Branch',
+            'name' => 'Name',
         ];
     }
 

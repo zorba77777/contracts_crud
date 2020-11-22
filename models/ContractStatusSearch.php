@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Status;
+use app\models\ContractStatus;
 
 /**
- * StatusSearch represents the model behind the search form of `app\models\Status`.
+ * ContractStatusSearch represents the model behind the search form of `app\models\ContractStatus`.
  */
-class StatusSearch extends Status
+class ContractStatusSearch extends ContractStatus
 {
     /**
      * {@inheritdoc}
@@ -18,7 +18,7 @@ class StatusSearch extends Status
     {
         return [
             [['id'], 'integer'],
-            [['status'], 'safe'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class StatusSearch extends Status
      */
     public function search($params)
     {
-        $query = Status::find();
+        $query = ContractStatus::find();
 
         // add conditions that should always apply here
 
@@ -61,7 +61,7 @@ class StatusSearch extends Status
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'status', $this->status]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

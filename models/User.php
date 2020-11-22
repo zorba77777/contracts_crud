@@ -16,6 +16,10 @@ use yii\web\IdentityInterface;
  *
  * @property Contract[] $contracts
  * @property Contract[] $contracts0
+ * @property Event[] $events
+ * @property-write mixed $password
+ * @property-read null|string $authKey
+ * @property Event[] $events0
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -69,6 +73,26 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getContracts0()
     {
         return $this->hasMany(Contract::className(), ['lawyer' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Events]].
+     *
+     * @return \yii\db\ActiveQuery|EventQuery
+     */
+    public function getEvents()
+    {
+        return $this->hasMany(Event::className(), ['user' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Events0]].
+     *
+     * @return \yii\db\ActiveQuery|EventQuery
+     */
+    public function getEvents0()
+    {
+        return $this->hasMany(Event::className(), ['creator' => 'id']);
     }
 
     /**
@@ -163,5 +187,4 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             return true;
         }
     }
-
 }

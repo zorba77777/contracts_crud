@@ -18,7 +18,7 @@ class BranchSearch extends Branch
     {
         return [
             [['id'], 'integer'],
-            [['branch'], 'safe'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -61,7 +61,7 @@ class BranchSearch extends Branch
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'branch', $this->branch]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

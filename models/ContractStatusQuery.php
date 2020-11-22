@@ -3,11 +3,11 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[Status]].
+ * This is the ActiveQuery class for [[ContractStatus]].
  *
- * @see Status
+ * @see ContractStatus
  */
-class StatusQuery extends \yii\db\ActiveQuery
+class ContractStatusQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class StatusQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Status[]|array
+     * @return ContractStatus[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class StatusQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Status|array|null
+     * @return ContractStatus|array|null
      */
     public function one($db = null)
     {

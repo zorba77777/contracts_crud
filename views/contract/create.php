@@ -3,7 +3,8 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Contract */
+/* @var $contract app\models\Contract */
+/* @var $events array */
 /* @var $branches array */
 /* @var $users array */
 /* @var $statuses array */
@@ -22,7 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form_create', [
-        'model' => $model,
+        'contract' => $contract,
+        'events' => $events,
         'users' => $users,
         'branches' => $branches,
         'statuses' => $statuses

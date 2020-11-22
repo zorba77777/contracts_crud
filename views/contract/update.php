@@ -3,7 +3,8 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Contract */
+/* @var $contract app\models\Contract */
+/* @var $events array */
 /* @var $branches array */
 /* @var $users array */
 /* @var $statuses array */
@@ -13,9 +14,9 @@ $this->registerJsFile(
     ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 
-$this->title = 'Обновить информацию об элементе: ' . $model->counterparty;
+$this->title = 'Обновить информацию об элементе: ' . $contract->counterparty;
 $this->params['breadcrumbs'][] = ['label' => 'Договоры', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->counterparty, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $contract->counterparty, 'url' => ['view', 'id' => $contract->id]];
 $this->params['breadcrumbs'][] = 'Обновить';
 ?>
 <div class="contract-update">
@@ -23,7 +24,8 @@ $this->params['breadcrumbs'][] = 'Обновить';
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form_update', [
-        'model' => $model,
+        'contract' => $contract,
+        'events' => $events,
         'users' => $users,
         'branches' => $branches,
         'statuses' => $statuses

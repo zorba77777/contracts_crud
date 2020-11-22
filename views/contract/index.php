@@ -1,5 +1,6 @@
 <?php
 
+use yii\bootstrap\Button;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -7,10 +8,15 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ContractSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $columnsVisibility array */
 /* @var $branches array */
 /* @var $users array */
 /* @var $statuses array */
+/* @var $maxOrdinalNumber integer */
+
+$this->registerJsFile(
+    '@web/js/contract_listed.js',
+    ['depends' => [\yii\web\JqueryAsset::className()]]
+);
 
 $this->title = 'Договоры';
 $this->params['breadcrumbs'][] = $this->title;
@@ -22,6 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Создать элемент', ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Экспортировать в Excel', ['export-excel'], ['class' => 'btn btn-success', 'target' => '_blank']) ?>
+
+
     </p>
 
     <?php Pjax::begin(); ?>
@@ -44,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'branch',
                 'filter' => $branches,
                 'value' => function ($model) {
-                    return $model->branch0->branch;
+                    return $model->branch0->name;
                 }
             ],
             [
@@ -58,276 +66,727 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'status',
                 'filter' => $statuses,
                 'value' => function ($model) {
-                    return $model->status0->status;
+                    return $model->status0->name;
                 }
             ],
             'start_date',
-            'milestone1:ntext',
             [
-                'attribute' => 'date1',
+                'label' => 'Веха1',
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(0, $model->events)) {
+                        return $model->events[0]->content;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+            [
+                'label' => 'Дата1',
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(0, $model->events)) {
+                        return $model->events[0]->date;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone2',
-                'visible' => $columnsVisibility['milestone2']
+                'label' => 'Веха2',
+                'visible' => 1 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(1, $model->events)) {
+                        return $model->events[1]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'date2',
+                'label' => 'Дата2',
+                'visible' => 1 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date2']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(1, $model->events)) {
+                        return $model->events[1]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха3',
+                'visible' => 2 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(2, $model->events)) {
+                        return $model->events[2]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone3',
-                'visible' => $columnsVisibility['milestone3']
-            ],
-            [
-                'attribute' => 'date3',
+                'label' => 'Дата3',
+                'visible' => 2 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date3']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(2, $model->events)) {
+                        return $model->events[2]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха4',
+                'visible' => 3 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(3, $model->events)) {
+                        return $model->events[3]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone4',
-                'visible' => $columnsVisibility['milestone4']
-            ],
-            [
-                'attribute' => 'date4',
+                'label' => 'Дата4',
+                'visible' => 3 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date4']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(3, $model->events)) {
+                        return $model->events[3]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха5',
+                'visible' => 4 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(4, $model->events)) {
+                        return $model->events[4]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone5',
-                'visible' => $columnsVisibility['milestone5']
-            ],
-            [
-                'attribute' => 'date5',
+                'label' => 'Дата5',
+                'visible' => 4 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date5']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(4, $model->events)) {
+                        return $model->events[4]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха6',
+                'visible' => 5 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(5, $model->events)) {
+                        return $model->events[5]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone6',
-                'visible' => $columnsVisibility['milestone6']
-            ],
-            [
-                'attribute' => 'date6',
+                'label' => 'Дата6',
+                'visible' => 5 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date6']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(5, $model->events)) {
+                        return $model->events[5]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха7',
+                'visible' => 6 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(6, $model->events)) {
+                        return $model->events[6]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone7',
-                'visible' => $columnsVisibility['milestone7']
-            ],
-            [
-                'attribute' => 'date7',
+                'label' => 'Дата7',
+                'visible' => 6 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date7']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(6, $model->events)) {
+                        return $model->events[6]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха8',
+                'visible' => 7 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(7, $model->events)) {
+                        return $model->events[7]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone8',
-                'visible' => $columnsVisibility['milestone8']
-            ],
-            [
-                'attribute' => 'date8',
+                'label' => 'Дата8',
+                'visible' => 7 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date8']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(7, $model->events)) {
+                        return $model->events[7]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха9',
+                'visible' => 8 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(8, $model->events)) {
+                        return $model->events[8]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone9',
-                'visible' => $columnsVisibility['milestone9']
-            ],
-            [
-                'attribute' => 'date9',
+                'label' => 'Дата9',
+                'visible' => 8 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date9']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(8, $model->events)) {
+                        return $model->events[8]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха10',
+                'visible' => 9 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(9, $model->events)) {
+                        return $model->events[9]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone10',
-                'visible' => $columnsVisibility['milestone10']
-            ],
-            [
-                'attribute' => 'date10',
+                'label' => 'Дата10',
+                'visible' => 9 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date10']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(9, $model->events)) {
+                        return $model->events[9]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха11',
+                'visible' => 10 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(10, $model->events)) {
+                        return $model->events[10]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone11',
-                'visible' => $columnsVisibility['milestone11']
-            ],
-            [
-                'attribute' => 'date11',
+                'label' => 'Дата11',
+                'visible' => 10 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date11']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(10, $model->events)) {
+                        return $model->events[10]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха12',
+                'visible' => 11 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(11, $model->events)) {
+                        return $model->events[11]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone12',
-                'visible' => $columnsVisibility['milestone12']
-            ],
-            [
-                'attribute' => 'date12',
+                'label' => 'Дата12',
+                'visible' => 11 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date12']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(11, $model->events)) {
+                        return $model->events[11]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха13',
+                'visible' => 12 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(12, $model->events)) {
+                        return $model->events[12]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone13',
-                'visible' => $columnsVisibility['milestone13']
-            ],
-            [
-                'attribute' => 'date13',
+                'label' => 'Дата13',
+                'visible' => 12 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date13']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(12, $model->events)) {
+                        return $model->events[12]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха14',
+                'visible' => 13 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(13, $model->events)) {
+                        return $model->events[13]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone14',
-                'visible' => $columnsVisibility['milestone14']
-            ],
-            [
-                'attribute' => 'date14',
+                'label' => 'Дата14',
+                'visible' => 13 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date14']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(13, $model->events)) {
+                        return $model->events[13]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха15',
+                'visible' => 14 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(14, $model->events)) {
+                        return $model->events[14]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone15',
-                'visible' => $columnsVisibility['milestone15']
-            ],
-            [
-                'attribute' => 'date15',
+                'label' => 'Дата15',
+                'visible' => 14 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date15']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(14, $model->events)) {
+                        return $model->events[14]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха16',
+                'visible' => 15 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(15, $model->events)) {
+                        return $model->events[15]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone16',
-                'visible' => $columnsVisibility['milestone16']
-            ],
-            [
-                'attribute' => 'date16',
+                'label' => 'Дата16',
+                'visible' => 15 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date16']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(15, $model->events)) {
+                        return $model->events[15]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха17',
+                'visible' => 16 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(16, $model->events)) {
+                        return $model->events[16]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone17',
-                'visible' => $columnsVisibility['milestone17']
-            ],
-            [
-                'attribute' => 'date17',
+                'label' => 'Дата17',
+                'visible' => 16 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date17']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(16, $model->events)) {
+                        return $model->events[16]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха18',
+                'visible' => 17 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(17, $model->events)) {
+                        return $model->events[17]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone18',
-                'visible' => $columnsVisibility['milestone18']
-            ],
-            [
-                'attribute' => 'date18',
+                'label' => 'Дата18',
+                'visible' => 17 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date18']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(17, $model->events)) {
+                        return $model->events[17]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха19',
+                'visible' => 18 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(18, $model->events)) {
+                        return $model->events[18]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone19',
-                'visible' => $columnsVisibility['milestone19']
-            ],
-            [
-                'attribute' => 'date19',
+                'label' => 'Дата19',
+                'visible' => 18 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date19']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(18, $model->events)) {
+                        return $model->events[18]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха20',
+                'visible' => 19 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(19, $model->events)) {
+                        return $model->events[19]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone20',
-                'visible' => $columnsVisibility['milestone20']
-            ],
-            [
-                'attribute' => 'date20',
+                'label' => 'Дата20',
+                'visible' => 19 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date20']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(19, $model->events)) {
+                        return $model->events[19]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха21',
+                'visible' => 20 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(20, $model->events)) {
+                        return $model->events[20]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone21',
-                'visible' => $columnsVisibility['milestone21']
-            ],
-            [
-                'attribute' => 'date21',
+                'label' => 'Дата21',
+                'visible' => 20 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date21']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(20, $model->events)) {
+                        return $model->events[20]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха22',
+                'visible' => 21 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(21, $model->events)) {
+                        return $model->events[21]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone22',
-                'visible' => $columnsVisibility['milestone22']
-            ],
-            [
-                'attribute' => 'date22',
+                'label' => 'Дата22',
+                'visible' => 21 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date22']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(21, $model->events)) {
+                        return $model->events[21]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха23',
+                'visible' => 22 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(22, $model->events)) {
+                        return $model->events[22]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone23',
-                'visible' => $columnsVisibility['milestone23']
-            ],
-            [
-                'attribute' => 'date23',
+                'label' => 'Дата23',
+                'visible' => 22 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date23']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(22, $model->events)) {
+                        return $model->events[22]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха24',
+                'visible' => 23 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(23, $model->events)) {
+                        return $model->events[23]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone24',
-                'visible' => $columnsVisibility['milestone24']
-            ],
-            [
-                'attribute' => 'date24',
+                'label' => 'Дата24',
+                'visible' => 23 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date24']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(23, $model->events)) {
+                        return $model->events[23]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха25',
+                'visible' => 24 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(24, $model->events)) {
+                        return $model->events[24]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone25',
-                'visible' => $columnsVisibility['milestone25']
-            ],
-            [
-                'attribute' => 'date25',
+                'label' => 'Дата25',
+                'visible' => 24 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date25']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(24, $model->events)) {
+                        return $model->events[24]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха26',
+                'visible' => 25 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(25, $model->events)) {
+                        return $model->events[25]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone26',
-                'visible' => $columnsVisibility['milestone26']
-            ],
-            [
-                'attribute' => 'date26',
+                'label' => 'Дата26',
+                'visible' => 25 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date26']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(25, $model->events)) {
+                        return $model->events[25]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха27',
+                'visible' => 26 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(26, $model->events)) {
+                        return $model->events[26]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone27',
-                'visible' => $columnsVisibility['milestone27']
-            ],
-            [
-                'attribute' => 'date27',
+                'label' => 'Дата27',
+                'visible' => 26 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date27']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(26, $model->events)) {
+                        return $model->events[26]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха28',
+                'visible' => 27 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(27, $model->events)) {
+                        return $model->events[27]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone28',
-                'visible' => $columnsVisibility['milestone28']
-            ],
-            [
-                'attribute' => 'date28',
+                'label' => 'Дата28',
+                'visible' => 27 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date28']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(27, $model->events)) {
+                        return $model->events[27]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха29',
+                'visible' => 28 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(28, $model->events)) {
+                        return $model->events[28]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone29',
-                'visible' => $columnsVisibility['milestone29']
-            ],
-            [
-                'attribute' => 'date29',
+                'label' => 'Дата29',
+                'visible' => 28 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date29']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(28, $model->events)) {
+                        return $model->events[28]->date;
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+
+            [
+                'label' => 'Веха30',
+                'visible' => 29 <= $maxOrdinalNumber,
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(29, $model->events)) {
+                        return $model->events[29]->content;
+                    } else {
+                        return '';
+                    }
+                }
             ],
             [
-                'attribute' => 'milestone30',
-                'visible' => $columnsVisibility['milestone30']
-            ],
-            [
-                'attribute' => 'date30',
+                'label' => 'Дата30',
+                'visible' => 29 <= $maxOrdinalNumber,
                 'contentOptions' => ['style' => 'white-space: nowrap;'],
-                'visible' => $columnsVisibility['date30']
+                'value' => function ($model) {
+                    if ($model->events && array_key_exists(29, $model->events)) {
+                        return $model->events[29]->date;
+                    } else {
+                        return '';
+                    }
+                }
             ],
+
             [
                 'attribute' => 'creator',
                 'filter' => $users,
@@ -343,5 +802,13 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
     <?php Pjax::end(); ?>
+
+    <?= Button::widget([
+        'label' => 'Показать все договоры на одной странице',
+        'options' => [
+            'class' => 'btn-lg',
+            'id' => 'show-all'
+        ],
+    ]); ?>
 
 </div>
