@@ -53,12 +53,11 @@ class EventController extends Controller
         $searchModel = new EventSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $dropdownListArrays = $this->getDropdownListArrays();
+        $users = User::find()->all();
+        $users = ArrayHelper::map($users,'id','username');
 
         return $this->render('index', [
-            'types' => $dropdownListArrays['types'],
-            'users' => $dropdownListArrays['users'],
-            'contracts' => $dropdownListArrays['contracts'],
+            'users' => $users,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -145,19 +144,4 @@ class EventController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    private function getDropdownListArrays()
-    {
-        $dropdownListArrays = ['users' => [], 'types' => [], 'contracts' => []];
-
-        $dropdownListArrays['users'] = User::find()->all();
-        $dropdownListArrays['users'] = ArrayHelper::map($dropdownListArrays['users'],'id','username');
-
-        $dropdownListArrays['types'] = EventType::find()->all();
-        $dropdownListArrays['types'] = ArrayHelper::map($dropdownListArrays['types'],'id','name');
-
-        $dropdownListArrays['contracts'] = Contract::find()->all();
-        $dropdownListArrays['contracts'] = ArrayHelper::map($dropdownListArrays['contracts'],'шв','counterparty');
-
-        return $dropdownListArrays;
-    }
 }

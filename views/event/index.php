@@ -6,9 +6,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\EventSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $types array */
 /* @var $users array */
-/* @var $contracts array */
 
 $this->title = 'События';
 $this->params['breadcrumbs'][] = $this->title;
@@ -17,10 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Создать событие', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -28,22 +22,35 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'id',
-//            [
-//                'attribute' => 'type',
-//                'filter' => $types,
-//                'value' => function ($model) {
-//                    return $model->type0->name;
-//                }
-//            ],
-            'date',
+            [
+                'attribute' => 'date',
+                'contentOptions' => ['style' => 'white-space: nowrap;']
+            ],
             [
                 'attribute' => 'contract',
-                'filter' => $contracts,
+                'filter' => false,
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->contract0->counterparty;
+                    return Html::a($model->contract0->counterparty, '/contract/view?id=' . $model->contract0->id);
                 }
             ],
+            [
+                'label' => 'Предмет договора',
+                'value' => function ($model) {
+                    return $model->contract0->subject;
+                }
+            ],
+            [
+                'label' => 'Филиал / СП',
+                'value' => function ($model) {
+                    return $model->contract0->branch0->name;
+                }
+            ],
+            [
+                'attribute' => 'content',
+                'label' => 'Содержание события'
+            ],
+
             [
                 'attribute' => 'user',
                 'filter' => $users,
@@ -51,7 +58,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->user0->username;
                 }
             ],
-            'content:ntext',
             [
                 'attribute' => 'creator',
                 'filter' => $users,
@@ -59,7 +65,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->creator0->username;
                 }
             ],
-//            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
