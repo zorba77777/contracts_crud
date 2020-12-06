@@ -48,7 +48,7 @@ class Contract extends \yii\db\ActiveRecord
             [['branch'], 'exist', 'skipOnError' => true, 'targetClass' => Branch::className(), 'targetAttribute' => ['branch' => 'id']],
             [['status'], 'exist', 'skipOnError' => true, 'targetClass' => ContractStatus::className(), 'targetAttribute' => ['status' => 'id']],
             [['counterparty', 'subject', 'branch', 'lawyer', 'status', 'start_date'], 'required'],
-            [['start_date', 'created_at', 'updated_at'], 'date', 'format' => 'yyyy-MM-dd'],
+            [['start_date', 'created_at', 'updated_at'], 'date', 'format' => 'yyyy-MM-dd']
         ];
     }
 

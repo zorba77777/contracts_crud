@@ -27,9 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Создать элемент', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Экспортировать в Excel', ['export-excel'], ['class' => 'btn btn-success', 'target' => '_blank']) ?>
-
-
     </p>
 
     <?php Pjax::begin(); ?>

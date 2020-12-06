@@ -46,6 +46,7 @@ class Event extends \yii\db\ActiveRecord
             [['contract'], 'exist', 'skipOnError' => true, 'targetClass' => Contract::className(), 'targetAttribute' => ['contract' => 'id']],
             [['user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user' => 'id']],
             [['creator'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['creator' => 'id']],
+            [['date', 'created_at', 'updated_at'], 'date', 'format' => 'yyyy-MM-dd']
         ];
     }
 

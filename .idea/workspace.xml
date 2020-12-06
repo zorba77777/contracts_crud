@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0f375bbd-78c3-4110-808d-e57d262af430" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/EventController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/EventController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/event/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/event/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +17,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="composer.json" />
       </list>
     </option>
   </component>
@@ -172,7 +171,9 @@
       <workItem from="1605386095596" duration="17959000" />
       <workItem from="1605984409478" duration="20753000" />
       <workItem from="1606072484767" duration="12376000" />
-      <workItem from="1606763222453" duration="2559000" />
+      <workItem from="1606763222453" duration="2934000" />
+      <workItem from="1607288948274" duration="1422000" />
+      <workItem from="1607290442048" duration="64000" />
     </task>
     <servers />
   </component>

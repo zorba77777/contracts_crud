@@ -14,10 +14,10 @@ $this->registerJsFile(
     ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 
-$this->title = 'Обновить информацию об элементе: ' . $contract->counterparty;
+$this->title = 'Редактировать информацию об элементе: ' . $contract->counterparty;
 $this->params['breadcrumbs'][] = ['label' => 'Договоры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $contract->counterparty, 'url' => ['view', 'id' => $contract->id]];
-$this->params['breadcrumbs'][] = 'Обновить';
+$this->params['breadcrumbs'][] = 'Редактировать';
 ?>
 <div class="contract-update">
 

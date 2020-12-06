@@ -217,11 +217,6 @@ class ContractController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionExportExcel()
-    {
-        ExcelExportImportHelper::ExportFromContracts();
-    }
-
     private function getDropdownListArrays()
     {
         $dropdownListArrays = ['users' => [], 'branches' => [], 'statuses' => []];
