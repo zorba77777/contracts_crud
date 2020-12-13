@@ -33,6 +33,12 @@ use yii\widgets\ActiveForm;
         'options' => ['placeholder' => '9999-99-99'],
     ]) ?>
 
+    <?= $form->field($contract, 'check_date')->widget(DatePicker::classname(), [
+        'language' => 'ru',
+        'dateFormat' => 'yyyy-MM-dd',
+        'options' => ['placeholder' => '9999-99-99'],
+    ]) ?>
+
     <?php for ($i = 0; $i < 30; $i++): ?>
 
         <?php if (!$events[$i]->date && !$events[$i]->content): ?>

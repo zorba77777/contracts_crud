@@ -14,6 +14,7 @@ use Yii;
  * @property int|null $lawyer
  * @property int|null $status
  * @property string|null $start_date
+ * @property string|null $check_date
  * @property string|null $created_at
  * @property string|null $updated_at
  * @property int|null $creator
@@ -41,14 +42,14 @@ class Contract extends \yii\db\ActiveRecord
     {
         return [
             [['branch', 'lawyer', 'status', 'creator'], 'integer'],
-            [['start_date', 'created_at', 'updated_at'], 'safe'],
+            [['start_date', 'check_date', 'created_at', 'updated_at'], 'safe'],
             [['counterparty', 'subject'], 'string', 'max' => 255],
             [['creator'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['creator' => 'id']],
             [['lawyer'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['lawyer' => 'id']],
             [['branch'], 'exist', 'skipOnError' => true, 'targetClass' => Branch::className(), 'targetAttribute' => ['branch' => 'id']],
             [['status'], 'exist', 'skipOnError' => true, 'targetClass' => ContractStatus::className(), 'targetAttribute' => ['status' => 'id']],
-            [['counterparty', 'subject', 'branch', 'lawyer', 'status', 'start_date'], 'required'],
-            [['start_date', 'created_at', 'updated_at'], 'date', 'format' => 'yyyy-MM-dd']
+            [['counterparty', 'subject', 'branch', 'lawyer', 'status', 'start_date', 'check_date'], 'required'],
+            [['start_date', 'check_date', 'created_at', 'updated_at'], 'date', 'format' => 'yyyy-MM-dd']
         ];
     }
 
@@ -65,6 +66,7 @@ class Contract extends \yii\db\ActiveRecord
             'lawyer' => 'Исполнитель',
             'status' => 'Статус задачи',
             'start_date' => 'Дата поступления',
+            'check_date' => 'Контрольная дата',
             'created_at' => 'Создано',
             'updated_at' => 'Обновлено',
             'creator' => 'Кем создано / обновлено',

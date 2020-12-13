@@ -18,7 +18,7 @@ class ContractSearch extends Contract
     {
         return [
             [['id', 'branch', 'lawyer', 'status', 'creator'], 'integer'],
-            [['counterparty', 'subject', 'start_date', 'created_at', 'updated_at'], 'safe'],
+            [['counterparty', 'subject', 'start_date', 'check_date', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class ContractSearch extends Contract
      */
     public function search($params)
     {
-        $query = Contract::find();
+        $query = Contract::find()->orderBy(['start_date' => SORT_ASC]);;
 
         // add conditions that should always apply here
 
@@ -63,6 +63,7 @@ class ContractSearch extends Contract
             'lawyer' => $this->lawyer,
             'status' => $this->status,
             'start_date' => $this->start_date,
+            'check_date' => $this->check_date,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'creator' => $this->creator,

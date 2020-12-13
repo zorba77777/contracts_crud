@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f375bbd-78c3-4110-808d-e57d262af430" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d5fa410a-c430-44dc-aaa9-f794a6bc3c5a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d5fa410a-c430-44dc-aaa9-f794a6bc3c5a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Contract.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Contract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/ContractSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/ContractSearch.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/EventSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/EventSearch.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/contract/_form_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/contract/_form_create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/contract/_form_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/contract/_form_update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/contract/_search.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/contract/_search.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/contract/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/contract/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/contract/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/contract/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/contract_edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/contract_edit.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,6 +184,10 @@
       <workItem from="1606763222453" duration="2934000" />
       <workItem from="1607288948274" duration="1422000" />
       <workItem from="1607290442048" duration="64000" />
+      <workItem from="1607290532102" duration="337000" />
+      <workItem from="1607291012049" duration="37000" />
+      <workItem from="1607294035656" duration="17000" />
+      <workItem from="1607889051136" duration="7664000" />
     </task>
     <servers />
   </component>

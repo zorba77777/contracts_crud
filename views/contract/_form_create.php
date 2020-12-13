@@ -37,6 +37,12 @@ use yii\widgets\ActiveForm;
         'options' => ['placeholder' => '9999-99-99'],
     ]) ?>
 
+    <?= $form->field($contract, 'check_date')->widget(DatePicker::classname(), [
+        'language' => 'ru',
+        'dateFormat' => 'yyyy-MM-dd',
+        'options' => ['placeholder' => '9999-99-99'],
+    ]) ?>
+
     <?= $form->field($events[0], 'content')->textarea(['rows' => 6, 'name' => 'content' . 0])->label('Веха' . 1) ?>
 
     <?= $form->field($events[0], 'date')->widget(DatePicker::classname(), [

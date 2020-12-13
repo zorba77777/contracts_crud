@@ -67,6 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'start_date',
+            'check_date',
             [
                 'label' => 'Веха1',
                 'value' => function ($model) {

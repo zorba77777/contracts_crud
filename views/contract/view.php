@@ -52,6 +52,7 @@ YiiAsset::register($this);
                 }
             ],
             'start_date',
+            'check_date',
             [
                 'label' => 'Веха1',
                 'visible' => count($model->events) >= 1,
