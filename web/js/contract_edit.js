@@ -1,5 +1,9 @@
 $(function () {
 
+    if (window.location.href.includes('update') && ($('#contract-check_date').val() == null || $('#contract-check_date').val() == '')) {
+        setCheckDate();
+    }
+
     $('#add').on('click', function () {
         let hidden = $(".hidden");
         if (hidden.length !== 0) {
@@ -10,26 +14,25 @@ $(function () {
     });
 
     $('#contract-start_date').on('blur', function () {
-        setTimeout(function () {
-            let date = new Date($('#contract-start_date').val());
-
-            date.setDate(date.getDate() + 1);
-            let i = 1;
-            while (i < 3) {
-                let stringDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-                if (!nonworkingdays.includes(stringDate)) {
-                    i++;
-                }
-                date.setDate(date.getDate() + 1);
-            }
-
-            $('#contract-check_date').val(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
-        }, 1000);
-
+        setTimeout(setCheckDate, 1000);
     });
-
-
 });
+
+function setCheckDate() {
+    let date = new Date($('#contract-start_date').val());
+
+    date.setDate(date.getDate() + 1);
+    let i = 1;
+    while (i < 3) {
+        let stringDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+        if (!nonworkingdays.includes(stringDate)) {
+            i++;
+        }
+        date.setDate(date.getDate() + 1);
+    }
+
+    $('#contract-check_date').val(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
+}
 
 let nonworkingdays = [
     '2020-7-1', '2020-7-4', '2020-7-5', '2020-7-11', '2020-7-12', '2020-7-18', '2020-7-19', '2020-7-25', '2020-7-26',
