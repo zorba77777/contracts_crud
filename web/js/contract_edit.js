@@ -19,7 +19,19 @@ $(function () {
 });
 
 function setCheckDate() {
-    let date = new Date($('#contract-start_date').val());
+    let dateString = $('#contract-start_date').val();
+
+    if (!dateString) {
+        setTimeout(setCheckDate, 1000);
+        return;
+    }
+
+    date = new Date();
+
+    parts = dateString.split('-');
+    date.setFullYear(parseInt(parts[0], 10));
+    date.setMonth(parseInt(parts[1], 10) - 1);
+    date.setDate(parseInt(parts[2], 10));
 
     date.setDate(date.getDate() + 1);
     let i = 1;
