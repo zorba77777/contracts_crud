@@ -5,6 +5,15 @@ $(function () {
         location.reload();
     });
 
+    $('#show-my').on('change', function () {
+        if ($('#show-my').is(':checked')) {
+            setCookie('showMy', true, 30);
+            location.reload();
+        } else {
+            setCookie('showMy', false, 30);
+            location.reload();
+        }
+    });
 });
 
 function setCookie(cookieName, cookieValue, expireDays) {

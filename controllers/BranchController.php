@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\helpers\ExcelExportImportHelper;
+use app\helpers\ExcelHelper;
 use Yii;
 use app\models\Branch;
 use app\models\BranchSearch;

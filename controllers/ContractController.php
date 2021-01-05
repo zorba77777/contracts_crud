@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\helpers\ExcelExportImportHelper;
+use app\helpers\ExcelHelper;
 use app\models\Branch;
 use app\models\ContractStatus;
 use app\models\Event;
@@ -15,6 +15,7 @@ use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use ZipArchive;
 
 /**
  * ContractController implements the CRUD actions for Contract model.
@@ -61,6 +62,12 @@ class ContractController extends Controller
             setcookie('showAll', null, -1, '/');
         }
 
+        $onlyMyContracts = false;
+        if(isset($_COOKIE['showMy']) && $_COOKIE['showMy'] == 'true') {
+            $dataProvider->query->andFilterWhere(['lawyer' => Yii::$app->user->identity->getId()]);
+            $onlyMyContracts = true;
+        }
+
         $contracts = $dataProvider->getModels();
 
         $maxOrdinalNumber = 0;
@@ -82,7 +89,8 @@ class ContractController extends Controller
             'maxOrdinalNumber' => $maxOrdinalNumber,
             'users' => $dropdownListArrays['users'],
             'branches' => $dropdownListArrays['branches'],
-            'statuses' => $dropdownListArrays['statuses']
+            'statuses' => $dropdownListArrays['statuses'],
+            'onlyMyContracts' => $onlyMyContracts
         ]);
     }
 
@@ -231,6 +239,39 @@ class ContractController extends Controller
         $dropdownListArrays['statuses'] = ArrayHelper::map($dropdownListArrays['statuses'],'id','name');
 
         return $dropdownListArrays;
+    }
+
+    public function actionGetExcel(string $separated = 'no')
+    {
+        if ($separated == 'no') {
+            ExcelHelper::createSpreadSheet();
+            Yii::$app->response->sendFile(ExcelHelper::$unseparatedExcelFileName);
+            unlink(ExcelHelper::$unseparatedExcelFileName);
+        } elseif ($separated == 'yes') {
+            $branches = Branch::find()->all();
+
+            foreach ($branches as $branch) {
+                ExcelHelper::createSpreadSheet($branch->id);
+            }
+
+            $files = glob(Yii::getAlias('@app') . '/helpers/*.xlsx');
+
+            $zip = new ZipArchive();
+            $zipFileName = Yii::getAlias('@app') . '/helpers/branches.zip';
+            if ($zip->open($zipFileName, ZipArchive::CREATE) !== TRUE) {
+                exit("cannot open <$zipFileName>\n");
+            }
+            foreach ($files as $file) {
+                $zip->addFile($file, basename($file));
+            }
+            $zip->close();
+
+            Yii::$app->response->sendFile($zipFileName);
+            unlink($zipFileName);
+            foreach ($files as $file) {
+                unlink($file);
+            }
+        }
     }
 
 }

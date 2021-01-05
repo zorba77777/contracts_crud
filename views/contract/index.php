@@ -12,6 +12,7 @@ use yii\widgets\Pjax;
 /* @var $users array */
 /* @var $statuses array */
 /* @var $maxOrdinalNumber integer */
+/* @var $onlyMyContracts bool */
 
 $this->registerJsFile(
     '@web/js/contract_listed.js',
@@ -21,13 +22,26 @@ $this->registerJsFile(
 $this->title = 'Договоры';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<!-- Rounded switch -->
+<div class="container-toggle">
+    <label class="switch">
+        <input type="checkbox" id="show-my" <?= $onlyMyContracts ? 'checked' : '' ?>>
+        <span class="slider round"></span>
+    </label>
+    <span id="switch-text">&nbsp;Показывать только мои договоры</span>
+</div>
+
 <div class="contract-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Создать элемент', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Экспортировать в Excel всё', ['get-excel?separated=no'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Экспортировать в Excel по филиалам', ['get-excel?separated=yes'], ['class' => 'btn btn-success']) ?>
     </p>
+
+
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
