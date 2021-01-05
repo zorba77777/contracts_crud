@@ -15,7 +15,7 @@ use yii\widgets\Pjax;
 /* @var $onlyMyContracts bool */
 
 $this->registerJsFile(
-    '@web/js/contract_listed.js',
+    '@web/js/contract_listed1.0.js',
     ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 
