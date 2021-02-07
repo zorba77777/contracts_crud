@@ -232,7 +232,7 @@ class ContractController extends Controller
         $dropdownListArrays['users'] = User::find()->all();
         $dropdownListArrays['users'] = ArrayHelper::map($dropdownListArrays['users'],'id','username');
 
-        $dropdownListArrays['branches'] = Branch::find()->all();
+        $dropdownListArrays['branches'] = Branch::find()->orderBy(['name' => SORT_ASC])->all();
         $dropdownListArrays['branches'] = ArrayHelper::map($dropdownListArrays['branches'],'id','name');
 
         $dropdownListArrays['statuses'] = ContractStatus::find()->all();

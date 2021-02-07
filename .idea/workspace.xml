@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0f375bbd-78c3-4110-808d-e57d262af430" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/AppAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/AppAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/site1.0.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +144,7 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -191,6 +190,11 @@
       <workItem from="1609706593386" duration="21749000" />
       <workItem from="1609788081827" duration="7311000" />
       <workItem from="1609795476477" duration="12589000" />
+      <workItem from="1609810022395" duration="1051000" />
+      <workItem from="1610574455208" duration="23000" />
+      <workItem from="1611174595864" duration="13000" />
+      <workItem from="1611175893339" duration="421000" />
+      <workItem from="1612731299518" duration="101000" />
     </task>
     <servers />
   </component>
