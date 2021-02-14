@@ -75,7 +75,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($contract, 'creator')->dropDownList($users); ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить и сбросить фильтр', ['class' => 'btn btn-success', 'name' => 'reset filter']) ?>
+        <?= Html::submitButton('Сохранить и оставить фильтр', ['class' => 'btn btn-success', 'name' => 'save filter']) ?>
+        <?= Html::submitButton('Сохранить и перейти на страницу элемента', ['class' => 'btn btn-success', 'name' => 'go to element page']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

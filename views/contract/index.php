@@ -42,7 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
 
-
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -55,7 +54,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'lastPageLabel' => 'Последняя'
         ],
         'columns' => [
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete} {duplicate}',
+                'buttons' => [
+                    'duplicate' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-duplicate"></span>', $url, [
+                            'title' => Yii::t('yii', 'Копировать'), 'target' => '_blank', 'data-pjax' => 0
+                        ]);
+                    }
+                ],
+            ],
             'id',
             'counterparty',
             'subject',

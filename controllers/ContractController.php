@@ -54,7 +54,14 @@ class ContractController extends Controller
     public function actionIndex()
     {
         $searchModel = new ContractSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        if (Yii::$app->session->get('applySavedParams')) {
+            $dataProvider = $searchModel->search(Yii::$app->session->get('queryParams'));
+            Yii::$app->session->remove('applySavedParams');
+        } else {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            Yii::$app->session->set('queryParams', Yii::$app->request->queryParams);
+        }
 
         if(isset($_COOKIE['showAll'])) {
             $dataProvider->pagination = false;
@@ -122,22 +129,7 @@ class ContractController extends Controller
             $events[] = new Event();
         }
 
-        if ($contract->load(Yii::$app->request->post()) && $contract->save()) {
-
-            for ($i = 0; $i < 30; $i++) {
-                if (Yii::$app->request->post('content' . $i)) {
-                    $events[$i]->contract = $contract->id;
-                    $events[$i]->content = Yii::$app->request->post('content' . $i);
-                    $events[$i]->date = Yii::$app->request->post('date' . $i);
-                    $events[$i]->ordinal_number = Yii::$app->request->post('ordinalNumber' . $i);
-                    $events[$i]->creator = $contract->creator;
-                    $events[$i]->user = $contract->lawyer;
-                    $events[$i]->save();
-                }
-            }
-
-            return $this->redirect(['index']);
-        }
+        $this->saveDataInDB($contract, $events);
 
         $dropdownListArrays = $this->getDropdownListArrays();
 
@@ -167,22 +159,7 @@ class ContractController extends Controller
             $events[] = new Event();
         }
 
-        if ($contract->load(Yii::$app->request->post()) && $contract->save()) {
-
-            for ($i = 0; $i < 30; $i++) {
-                if (Yii::$app->request->post('content' . $i)) {
-                    $events[$i]->contract = $contract->id;
-                    $events[$i]->content = Yii::$app->request->post('content' . $i);
-                    $events[$i]->date = Yii::$app->request->post('date' . $i);
-                    $events[$i]->ordinal_number = Yii::$app->request->post('ordinalNumber' . $i);
-                    $events[$i]->creator = $contract->creator;
-                    $events[$i]->user = $contract->lawyer;
-                    $events[$i]->save();
-                }
-            }
-
-            return $this->redirect(['index']);
-        }
+        $this->saveDataInDB($contract, $events);
 
         $dropdownListArrays = $this->getDropdownListArrays();
 
@@ -225,7 +202,47 @@ class ContractController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    private function getDropdownListArrays()
+    public function actionDuplicate($id)
+    {
+        $contract = $this->findModel($id);
+
+        $events = $contract->events;
+
+        $clonedContract = new Contract();
+        $clonedContract->counterparty = $contract->counterparty;
+        $clonedContract->subject = $contract->subject;
+        $clonedContract->branch = $contract->branch;
+        $clonedContract->lawyer = $contract->lawyer;
+        $clonedContract->status = $contract->status;
+        $clonedContract->start_date = $contract->start_date;
+        $clonedContract->check_date = $contract->check_date;
+
+        $clonedEvents = [];
+        foreach ($events as $key => $event) {
+            $clonedEvents[$key] = new Event();
+            $clonedEvents[$key]->content = $event->content;
+            $clonedEvents[$key]->date = $event->date;
+            $clonedEvents[$key]->ordinal_number = $event->ordinal_number;
+        }
+
+        for ($i = count($clonedEvents); $i < 30; $i++) {
+            $clonedEvents[] = new Event();
+        }
+
+        $this->saveDataInDB($clonedContract, $clonedEvents);
+
+        $dropdownListArrays = $this->getDropdownListArrays();
+
+        return $this->render('update', [
+            'contract' => $clonedContract,
+            'events' => $clonedEvents,
+            'users' => $dropdownListArrays['users'],
+            'branches' => $dropdownListArrays['branches'],
+            'statuses' => $dropdownListArrays['statuses']
+        ]);
+    }
+
+    private function getDropdownListArrays(): array
     {
         $dropdownListArrays = ['users' => [], 'branches' => [], 'statuses' => []];
 
@@ -240,6 +257,36 @@ class ContractController extends Controller
 
         return $dropdownListArrays;
     }
+
+    private function saveDataInDB(Contract $contract, array $events)
+    {
+        if ($contract->load(Yii::$app->request->post()) && $contract->save()) {
+
+            for ($i = 0; $i < 30; $i++) {
+                if (Yii::$app->request->post('content' . $i)) {
+                    $events[$i]->contract = $contract->id;
+                    $events[$i]->content = Yii::$app->request->post('content' . $i);
+                    $events[$i]->date = Yii::$app->request->post('date' . $i);
+                    $events[$i]->ordinal_number = Yii::$app->request->post('ordinalNumber' . $i);
+                    $events[$i]->creator = $contract->creator;
+                    $events[$i]->user = $contract->lawyer;
+                    $events[$i]->save();
+                }
+            }
+
+            $post = Yii::$app->request->post();
+
+            if (array_key_exists('reset_filter', $post)) {
+                $this->redirect(['index']);
+            } elseif (array_key_exists('save_filter', $post)) {
+                Yii::$app->session->set('applySavedParams', true);
+                $this->redirect(['index']);
+            } elseif (array_key_exists('go_to_element_page', $post)) {
+                $this->redirect(['view', 'id' => $contract->id]);
+            }
+        }
+    }
+
 
     public function actionGetExcel(string $separated = 'no')
     {

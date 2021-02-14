@@ -25,6 +25,7 @@ YiiAsset::register($this);
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a('Копировать', ['duplicate', 'id' => $model->id], ['class' => 'btn btn-warning', 'target' => '_blank', 'data-pjax' => 0]) ?>
     </p>
 
     <?= DetailView::widget([
