@@ -40,12 +40,13 @@ class ContractSearch extends Contract
      */
     public function search($params)
     {
-        $query = Contract::find()->orderBy(['start_date' => SORT_ASC]);;
+        $query = Contract::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['start_date' => SORT_ASC]],
         ]);
 
         $this->load($params);

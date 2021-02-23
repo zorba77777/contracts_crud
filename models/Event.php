@@ -22,6 +22,7 @@ use Yii;
  * @property Contract $contract0
  * @property User $user0
  * @property User $creator0
+ * @property Branch $branch0
  */
 class Event extends \yii\db\ActiveRecord
 {
@@ -66,6 +67,8 @@ class Event extends \yii\db\ActiveRecord
             'created_at' => 'Создано',
             'updated_at' => 'Обновлено',
             'creator' => 'Кем создано / обновлено',
+            'branch0' => 'Филиал / СП',
+            'contract0' => 'Предмет договора'
         ];
     }
 
@@ -116,5 +119,11 @@ class Event extends \yii\db\ActiveRecord
     public static function find()
     {
         return new EventQuery(get_called_class());
+    }
+
+    public function getBranch0()
+    {
+        $contract = Contract::findOne($this->contract);
+        return $contract->hasOne(Branch::className(), ['id' => 'branch']);
     }
 }

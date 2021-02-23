@@ -40,12 +40,13 @@ class EventSearch extends Event
      */
     public function search($params)
     {
-        $query = Event::find()->orderBy(['date' => SORT_DESC]);
+        $query = Event::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['date' => SORT_DESC]],
         ]);
 
         $this->load($params);

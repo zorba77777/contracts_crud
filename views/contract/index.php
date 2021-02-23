@@ -70,23 +70,17 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'branch',
                 'filter' => $branches,
-                'value' => function ($model) {
-                    return $model->branch0->name;
-                }
+                'value' => 'branch0.name'
             ],
             [
                 'attribute' => 'lawyer',
                 'filter' => $users,
-                'value' => function ($model) {
-                    return $model->lawyer0->username;
-                }
+                'value' => 'lawyer0.username'
             ],
             [
                 'attribute' => 'status',
                 'filter' => $statuses,
-                'value' => function ($model) {
-                    return $model->status0->name;
-                }
+                'value' => 'status0.name'
             ],
             'start_date',
             'check_date',
@@ -810,13 +804,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'creator',
                 'filter' => $users,
-                'value' => function ($model) {
-                    if ($model->creator0) {
-                        return $model->creator0->username;
-                    } else {
-                        return '';
-                    }
-                }
+                'value' => 'creator0.username'
             ],
         ],
     ]); ?>

@@ -35,16 +35,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-                'label' => 'Предмет договора',
-                'value' => function ($model) {
-                    return $model->contract0->subject;
-                }
+                'attribute' => 'contract0',
+                'value' => 'contract0.subject'
             ],
             [
-                'label' => 'Филиал / СП',
-                'value' => function ($model) {
-                    return $model->contract0->branch0->name;
-                }
+                'attribute' => 'branch0',
+                'value' => 'branch0.name'
             ],
             [
                 'attribute' => 'content',
@@ -54,16 +50,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'user',
                 'filter' => $users,
-                'value' => function ($model) {
-                    return $model->user0->username;
-                }
+                'value' => 'user0.username'
             ],
             [
                 'attribute' => 'creator',
                 'filter' => $users,
-                'value' => function ($model) {
-                    return $model->creator0->username;
-                }
+                'value' => 'creator0.username'
             ],
         ],
     ]); ?>
