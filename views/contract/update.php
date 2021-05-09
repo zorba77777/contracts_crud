@@ -10,7 +10,7 @@ use yii\helpers\Html;
 /* @var $statuses array */
 
 $this->registerJsFile(
-    '@web/js/contract_edit1.0.js',
+    '@web/js/contract_edit1.1.js',
     ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 

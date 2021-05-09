@@ -42,6 +42,9 @@ use yii\widgets\ActiveForm;
     <?php for ($i = 0; $i < 30; $i++): ?>
 
         <?php if (!$events[$i]->date && !$events[$i]->content): ?>
+
+            <?php $events[$i]->date = date('Y-m-d'); ?>
+
             <div class="hidden">
                 <?= $form->field($events[$i], 'content')->textarea(['rows' => 6, 'name' => 'content' . $i])->label('Веха' . ($i + 1)) ?>
 
@@ -53,6 +56,7 @@ use yii\widgets\ActiveForm;
 
                 <?= $form->field($events[$i], 'ordinal_number')->hiddenInput(['value' => $i, 'name' => 'ordinalNumber' . $i])->label(false); ?>
             </div>
+
         <?php else: ?>
             <?= $form->field($events[$i], 'content')->textarea(['rows' => 6, 'name' => 'content' . $i])->label('Веха' . ($i + 1)) ?>
 

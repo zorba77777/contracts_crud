@@ -19,6 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?php $contract->lawyer = Yii::$app->user->identity->getId() ?>
     <?php $contract->creator = Yii::$app->user->identity->getId() ?>
+    <?php $contract->start_date = date('Y-m-d'); ?>
 
     <?= $form->field($contract, 'counterparty')->textInput(['maxlength' => true]) ?>
 
@@ -43,6 +44,8 @@ use yii\widgets\ActiveForm;
         'options' => ['placeholder' => '9999-99-99'],
     ]) ?>
 
+    <?php $events[0]->date = date('Y-m-d'); ?>
+
     <?= $form->field($events[0], 'content')->textarea(['rows' => 6, 'name' => 'content' . 0])->label('Веха' . 1) ?>
 
     <?= $form->field($events[0], 'date')->widget(DatePicker::classname(), [
@@ -56,6 +59,8 @@ use yii\widgets\ActiveForm;
     <?php for ($i = 1; $i < 30; $i++): ?>
 
         <div class="hidden">
+            <?php $events[$i]->date = date('Y-m-d'); ?>
+
             <?= $form->field($events[$i], 'content')->textarea(['rows' => 6, 'name' => 'content' . $i])->label('Веха' . ($i + 1)) ?>
 
             <?= $form->field($events[$i], 'date')->widget(DatePicker::classname(), [
